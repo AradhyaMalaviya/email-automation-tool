@@ -29,11 +29,13 @@ A simple automation tool built with Node.js that reads recruiter data from a CSV
 ```
 project-root/
 │
-├── recruiters.csv        # Input data (Name, Company, Email)
-├── Aaradhya_Malaviya_Resume.pdf      # Resume file
-├── server.js              # Main server file
-├── .env                  # Environment variables
-├── package.json
+├── server/
+│   ├── recruiters.csv                 # Input data (Name, Company, Email)
+│   ├── Aaradhya_Malaviya_Resume (1).pdf # Resume file
+│   ├── server.js                      # Main server file
+│   ├── .env                           # Environment variables
+│   └── package.json
+└── ReadMe.md
 ```
 
 ---
@@ -51,7 +53,10 @@ cd your-repo-name
 
 ### 2️⃣ Install dependencies
 
+Navigate to the server directory and install packages:
+
 ```
+cd server
 npm install
 ```
 
@@ -59,11 +64,11 @@ npm install
 
 ### 3️⃣ Setup environment variables
 
-Create a `.env` file in root:
+Create a `.env` file inside the `server/` directory:
 
 ```
-EMAIL=your_email@gmail.com
-PASS=your_app_password
+Email=your_email@gmail.com
+EMAIL_PASS=your_app_password
 ```
 
 👉 Use Gmail App Password (not your real password)
@@ -72,7 +77,7 @@ PASS=your_app_password
 
 ### 4️⃣ Prepare CSV file
 
-Create `recruiters.csv`:
+Create `recruiters.csv` inside the `server/` directory:
 
 ```
 Name,Company,Email
@@ -83,15 +88,17 @@ Test User,DemoTech,your_email@gmail.com
 
 ### 5️⃣ Add your resume
 
-Place your resume file:
+Place your resume file inside the `server/` directory. Ensure the name matches the one in `server.js` (currently `Aaradhya_Malaviya_Resume (1).pdf`):
 
 ```
-your_name.pdf
+Aaradhya_Malaviya_Resume (1).pdf
 ```
 
 ---
 
 ### 6️⃣ Run the project
+
+Make sure you are in the `server/` directory, then start the server:
 
 ```
 node server.js
