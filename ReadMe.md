@@ -149,7 +149,7 @@ If you found this useful, give it a ⭐ on GitHub!
 ## 👨‍💻 Author
 
 Aaradhya Malaviya  
-AI-Powered Product Builder | BCA Final Year @ PSIT Kanpur  
+AI-Powered Product Builder 
 GitHub: https://github.com/AradhyaMalaviya  
 LinkedIn: https://www.linkedin.com/in/aradhya-malaviya-26bb31303/
 
