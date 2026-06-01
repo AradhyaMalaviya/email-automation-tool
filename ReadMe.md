@@ -1,26 +1,29 @@
-# 🚀 Automated Internship Email Sender (Node.js)
+# 🚀 Full-Stack Automated Internship Email Sender
 
-A simple automation tool built with Node.js that reads recruiter data from a CSV file and sends personalized internship application emails with your resume attached.
+A comprehensive full-stack automation tool built with React, Node.js, Express, and SQLite. It provides a beautiful dashboard to manage recruiters, email templates, settings, and track the progress of your internship application emails.
 
 ---
 
-## 📌 Features
+## 📌 Key Features
 
-* 📄 Read recruiter data from CSV file
-* 📧 Send personalized emails using Nodemailer
-* ⏱️ Built-in delay to avoid spam detection
-* 📎 Resume attachment support
-* 🔐 Secure credentials using `.env`
-* ⚡ Lightweight and beginner-friendly
+* **🖥️ Modern React Dashboard**: Beautiful, responsive UI with Dark/Light mode support.
+* **📊 Analytics & Tracking**: Visual analytics to track sent emails and success rates.
+* **📇 Recruiter Management**: Add recruiters manually or import via CSV.
+* **📝 Template System**: Create, edit, and manage rich HTML email templates with dynamic variables (e.g. `{{Name}}`, `{{Company}}`).
+* **📧 Automated Sending**: Send personalized emails with built-in delays to avoid spam detection.
+* **🗄️ SQLite Database**: Robust local data storage for recruiters, history, templates, and analytics.
+* **📎 Resume Management**: Upload and manage your resume securely.
+* **🔐 Secure Credentials**: Environment variables (`.env`) for SMTP/App passwords.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* Node.js
-* Express.js
-* Nodemailer
-* CSV Parser (`csv-parser`)
+* **Frontend**: React, Vite, Custom CSS with Theme Variables
+* **Backend**: Node.js, Express.js
+* **Database**: SQLite
+* **Email Service**: Nodemailer
+* **Data parsing/Uploads**: `csv-parser`, `multer`
 
 ---
 
@@ -29,11 +32,15 @@ A simple automation tool built with Node.js that reads recruiter data from a CSV
 ```
 project-root/
 │
-├── server/
-│   ├── recruiters.csv                 # Input data (Name, Company, Email)
-│   ├── Aaradhya_Malaviya_Resume (1).pdf # Resume file
-│   ├── server.js                      # Main server file
-│   ├── .env                           # Environment variables
+├── client/              # React Frontend (Vite)
+│   ├── src/             # Components, Pages, Styles, etc.
+│   └── package.json
+│
+├── server/              # Node.js/Express Backend
+│   ├── routes/          # API endpoints (emails, recruiters, analytics, etc.)
+│   ├── services/        # Email service logic
+│   ├── data.db          # SQLite Database
+│   ├── .env             # Environment variables
 │   └── package.json
 └── ReadMe.md
 ```
@@ -44,113 +51,79 @@ project-root/
 
 ### 1️⃣ Clone the repository
 
-```
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+```bash
+git clone https://github.com/AradhyaMalaviya/email-automation-tool.git
+cd email-automation-tool
 ```
 
 ---
 
-### 2️⃣ Install dependencies
+### 2️⃣ Backend Setup (Server)
 
 Navigate to the server directory and install packages:
 
-```
+```bash
 cd server
 npm install
 ```
 
----
-
-### 3️⃣ Setup environment variables
-
 Create a `.env` file inside the `server/` directory:
 
-```
+```env
 Email=your_email@gmail.com
 EMAIL_PASS=your_app_password
+PORT=5000
 ```
+*(👉 Use Gmail App Password, not your real password)*
 
-👉 Use Gmail App Password (not your real password)
+Start the backend server:
 
----
-
-### 4️⃣ Prepare CSV file
-
-Create `recruiters.csv` inside the `server/` directory:
-
-```
-Name,Company,Email
-Test User,DemoTech,your_email@gmail.com
+```bash
+npm run dev
+# or: node server.js
 ```
 
 ---
 
-### 5️⃣ Add your resume
+### 3️⃣ Frontend Setup (Client)
 
-Place your resume file inside the `server/` directory. Ensure the name matches the one in `server.js` (currently `Aaradhya_Malaviya_Resume (1).pdf`):
+Open a new terminal window, navigate to the client directory, and install packages:
 
+```bash
+cd client
+npm install
 ```
-Aaradhya_Malaviya_Resume (1).pdf
+
+Start the frontend development server:
+
+```bash
+npm run dev
 ```
 
----
-
-### 6️⃣ Run the project
-
-Make sure you are in the `server/` directory, then start the server:
-
-```
-node server.js
-```
+The dashboard will be available at `http://localhost:5173`.
 
 ---
 
 ## 📧 How It Works
 
-1. Reads CSV file using stream
-2. Converts each row into an object
-3. Sends email using Nodemailer
-4. Waits (delay) before sending next email
+1. **Dashboard**: Get an overview of your campaigns and recent activity.
+2. **Templates**: Set up your email templates using dynamic placeholders (e.g., `{{Name}}`, `{{Company}}`).
+3. **Recruiters**: Add recipients individually or upload a CSV file with their details.
+4. **Send Emails**: Select your preferred template, and the tool will automatically send personalized emails with delays to keep your account safe from spam filters.
+5. **History & Analytics**: View logs and track the progress of your overall campaigns.
 
 ---
 
 ## ⚠️ Important Notes
 
-* Do NOT send too many emails at once
-* Recommended: 100–150 emails/day
-* Always test using your own email first
-* Gmail requires App Password
-
----
-
-## 🚀 Future Improvements
-
-* Add React dashboard
-* Email tracking (open/click)
-* Auto follow-up emails
-* AI-generated personalized emails
-* Job scraping integration
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome. Feel free to improve this project.
-
----
-
-## ⭐ Support
-
-If you found this useful, give it a ⭐ on GitHub!
+* **Rate Limits**: Do NOT send too many emails at once to avoid being marked as spam. Recommended limit: 100–150 emails/day.
+* **Testing**: Always test using your own email first before sending to actual recruiters.
 
 ---
 
 ## 👨‍💻 Author
 
 Aaradhya Malaviya  
-AI-Powered Product Builder 
+AI-Powered Product Builder  
 GitHub: https://github.com/AradhyaMalaviya  
 LinkedIn: https://www.linkedin.com/in/aradhya-malaviya-26bb31303/
-
----

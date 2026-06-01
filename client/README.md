@@ -1,16 +1,43 @@
-# React + Vite
+# 🚀 Email Automation Tool - React Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend client for the Email Automation Tool. It is built using React and Vite, featuring a modern, responsive UI to manage your email campaigns effortlessly.
 
-Currently, two official plugins are available:
+## 📌 Features
+- **Dashboard**: Overview of analytics, recently sent emails, and quick actions.
+- **Recruiters Management**: Table view to list, add, edit, and delete recruiters. Support for CSV imports.
+- **Template Editor**: Create and edit email templates with dynamic variables like `{{Name}}` and `{{Company}}`.
+- **Email Sender**: Trigger email campaigns with real-time progress tracking.
+- **Settings & History**: Configure app preferences, toggle Dark/Light mode, and view past email logs.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+- React
+- Vite
+- Custom CSS (Modern Aesthetic, CSS Modules structure, Dark/Light mode)
 
-## React Compiler
+## ⚙️ Setup & Scripts
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install dependencies:
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+Start the development server:
+```bash
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Build for production:
+```bash
+npm run build
+```
+
+Preview production build:
+```bash
+npm run preview
+```
+
+## 🎨 Design System
+The client leverages a custom design system focusing on:
+- **Glassmorphism & Gradients**: For a premium feel.
+- **Micro-animations**: Hover states and page transitions.
+- **Theme Variables**: Managed via CSS custom properties in `src/index.css`.
