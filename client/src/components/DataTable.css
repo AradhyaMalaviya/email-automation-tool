@@ -1,0 +1,93 @@
+/* ==============================
+   DataTable
+   ============================== */
+.data-table-wrapper {
+  padding: 0;
+  overflow: hidden;
+}
+
+.data-table-scroll {
+  overflow-x: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 14px 20px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 13px 20px;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  transition: background var(--transition-fast);
+}
+
+.data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-table tbody tr:nth-child(even) td {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+[data-theme="dark"] .data-table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.data-table tbody tr:hover td {
+  background: rgba(99, 102, 241, 0.04);
+}
+
+.data-table-row--clickable {
+  cursor: pointer;
+}
+
+.data-table-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Empty */
+.data-table-empty {
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+}
+
+/* Skeleton */
+.data-table-skeleton {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.data-table-skeleton-row {
+  display: flex;
+  gap: 16px;
+}
+
+.data-table-skeleton-cell {
+  flex: 1;
+  height: 18px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-secondary) 50%, var(--bg-tertiary) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+}

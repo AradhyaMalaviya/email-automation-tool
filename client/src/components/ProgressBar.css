@@ -1,0 +1,58 @@
+/* ==============================
+   ProgressBar
+   ============================== */
+.progress-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.progress-bar-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.progress-bar-track {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--bg-tertiary);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent-gradient);
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+/* Active pulse */
+.progress-bar--active .progress-bar-fill {
+  animation: pulse 1.8s ease-in-out infinite;
+}
+
+/* Complete */
+.progress-bar--complete .progress-bar-fill {
+  background: var(--success);
+  animation: none;
+}
+
+/* Error */
+.progress-bar--error .progress-bar-fill {
+  background: var(--danger);
+  animation: none;
+}
+
+.progress-bar-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.progress-bar-pct {
+  font-weight: 600;
+  color: var(--text-primary);
+}

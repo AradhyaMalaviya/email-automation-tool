@@ -1,0 +1,66 @@
+/* ==============================
+   ThemeToggle
+   ============================== */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.theme-toggle-icon {
+  font-size: 1.05rem;
+}
+
+.theme-toggle-label {
+  flex: 1;
+  text-align: left;
+}
+
+/* Sliding pill */
+.theme-toggle-pill {
+  width: 36px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--border-color);
+  position: relative;
+  transition: background var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.theme-toggle-pill::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform var(--transition-normal);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle-pill--dark {
+  background: var(--accent-primary);
+}
+
+.theme-toggle-pill--dark::after {
+  transform: translateX(16px);
+}

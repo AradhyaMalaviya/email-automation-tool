@@ -1,0 +1,114 @@
+.settings-layout {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settings-card {
+  padding: 1.5rem;
+}
+
+.settings-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.75rem;
+}
+
+/* Form Styles */
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.help-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 0.5rem;
+}
+
+/* Resume Section */
+.resume-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.current-resume {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+}
+
+.resume-icon {
+  font-size: 2rem;
+}
+
+.resume-info h4 {
+  margin: 0 0 0.25rem 0;
+  color: var(--text-primary);
+}
+
+.resume-info p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.upload-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+/* SMTP Info */
+.smtp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.info-text {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.env-example {
+  background: var(--bg-tertiary);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-family: monospace;
+  color: var(--accent-primary);
+  border: 1px solid var(--border-color);
+  line-height: 1.6;
+}
+
+.warning-text {
+  color: var(--warning);
+}
