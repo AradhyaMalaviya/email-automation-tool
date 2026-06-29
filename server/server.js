@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 // Load environment variables before anything else
@@ -21,12 +22,18 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = 8000;
 
+// Ensure uploads directory exists
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 // ── Middleware ──────────────────────────────────────────────────────────────────
 app.use(cors());
 app.use(express.json());
 
 // Serve uploaded files (resumes, etc.)
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/uploads', express.static(uploadsDir));
 
 // ── API Routes ─────────────────────────────────────────────────────────────────
 app.use('/api/recruiters', recruitersRouter);
@@ -39,7 +46,7 @@ app.use('/api/analytics', analyticsRouter);
 if (process.env.NODE_ENV === 'production') {
   const clientDist = path.join(__dirname, '..', 'client', 'dist');
   app.use(express.static(clientDist));
-  app.get('/{*splat}', (_req, res) => {
+  app.get('*', (_req, res) => {
     res.sendFile(path.join(clientDist, 'index.html'));
   });
 }

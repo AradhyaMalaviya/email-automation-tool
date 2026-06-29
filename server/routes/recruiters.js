@@ -19,13 +19,24 @@ router.get('/', (req, res) => {
     if (search) {
       const pattern = `%${search}%`;
       recruiters = db.prepare(
-        `SELECT * FROM recruiters
-         WHERE name LIKE ? OR company LIKE ? OR email LIKE ?
-         ORDER BY created_at DESC`
+        `SELECT r.*, 
+                EXISTS (
+                  SELECT 1 FROM email_logs el 
+                  WHERE el.recruiter_id = r.id AND el.status = 'sent'
+                ) AS emailed
+         FROM recruiters r
+         WHERE r.name LIKE ? OR r.company LIKE ? OR r.email LIKE ?
+         ORDER BY r.created_at DESC`
       ).all(pattern, pattern, pattern);
     } else {
       recruiters = db.prepare(
-        'SELECT * FROM recruiters ORDER BY created_at DESC'
+        `SELECT r.*, 
+                EXISTS (
+                  SELECT 1 FROM email_logs el 
+                  WHERE el.recruiter_id = r.id AND el.status = 'sent'
+                ) AS emailed
+         FROM recruiters r
+         ORDER BY r.created_at DESC`
       ).all();
     }
 
@@ -175,10 +186,16 @@ router.post('/import', upload.single('file'), (req, res) => {
       );
 
       for (const row of results) {
-        // Normalise common CSV header variations
-        const name = row.Name || row.name || '';
-        const company = row.Company || row.company || '';
-        const email = row.Email || row.email || '';
+        // Normalise common CSV header variations (including case & BOM)
+        let name = '';
+        let company = '';
+        let email = '';
+        for (const key of Object.keys(row)) {
+          const normKey = key.replace(/^\uFEFF/, '').toLowerCase().trim();
+          if (normKey === 'name') name = row[key];
+          else if (normKey === 'company') company = row[key];
+          else if (normKey === 'email') email = row[key];
+        }
 
         if (!name || !company || !email) {
           errors.push({ row, reason: 'Missing required fields' });
@@ -186,7 +203,7 @@ router.post('/import', upload.single('file'), (req, res) => {
         }
 
         try {
-          insert.run(name.trim(), company.trim(), email.trim());
+          insert.run(String(name).trim(), String(company).trim(), String(email).trim());
           imported++;
         } catch (err) {
           if (err.message.includes('UNIQUE constraint failed')) {

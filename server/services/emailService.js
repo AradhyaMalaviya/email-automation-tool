@@ -72,6 +72,9 @@ function sleep(ms) {
  * @returns {Promise<{ sent: number, failed: number, total: number }>}
  */
 export async function sendEmails(recruiterIds, templateId, sseCallback) {
+  if (!recruiterIds || recruiterIds.length === 0) {
+    return { sent: 0, failed: 0, total: 0 };
+  }
   const transporter = createTransporter();
   const settings = getSettings();
   const delayMs = parseInt(settings.delay_ms, 10) || 60000;

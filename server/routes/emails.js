@@ -13,7 +13,7 @@ const sseClients = new Set();
  * Broadcast a progress event to every connected SSE client.
  */
 function broadcast(eventName, data) {
-  const payload = `event: ${eventName}\ndata: ${JSON.stringify(data)}\n\n`;
+  const payload = `data: ${JSON.stringify({ type: eventName, ...data })}\n\n`;
   for (const client of sseClients) {
     client.write(payload);
   }
@@ -41,9 +41,9 @@ router.get('/progress', (req, res) => {
 router.post('/send', (req, res) => {
   const { recruiterIds, sendUnsent: sendUnsentFlag, templateId } = req.body;
 
-  if (!recruiterIds && !sendUnsentFlag) {
+  if ((!recruiterIds || recruiterIds.length === 0) && !sendUnsentFlag) {
     return res.status(400).json({
-      error: 'Provide either recruiterIds (number[]) or sendUnsent: true.',
+      error: 'Provide either a non-empty list of recruiterIds (number[]) or sendUnsent: true.',
     });
   }
 
@@ -92,7 +92,7 @@ router.get('/history', (req, res) => {
     ).get(...params);
 
     const data = db.prepare(
-      `SELECT el.*, r.name AS recruiter_name, r.company AS recruiter_company, r.email AS recruiter_email
+      `SELECT el.*, r.name AS name, r.company AS company, r.email AS email
        FROM email_logs el
        LEFT JOIN recruiters r ON r.id = el.recruiter_id
        ${where}
